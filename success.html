@@ -53,6 +53,95 @@ a {
   <!-- Back to Home Button -->
   <a href="index.html">⬅ Back to Home</a>
 </div>
+  
+<!-- ================= Slider + Welcome + Form + Courses + Notes + Contact ================= -->
+<!-- Copy-paste this after your <body> or form section in index.html -->
 
+<!-- ================= Auto-changing Slider ================= -->
+<div class="slider">
+  <img src="IMG-20260211-WA0102.jpg" class="slide active">
+  <img src="IMG-20260211-WA0101.jpg" class="slide">
+  <img src="20260211_160932.jpg" class="slide">
+</div>
+
+<div class="content">
+  <h1>Welcome to My Education Website</h1>
+  <p>এখানে Student Registration, Course, Notes সব থাকবে।</p>
+</div>
+
+<script>
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+function showSlide() {
+  slides.forEach(slide => slide.classList.remove('active'));
+  slides[index].classList.add('active');
+  index++;
+  if(index === slides.length){ index = 0; }
+}
+setInterval(showSlide, 3000);
+</script>
+
+<hr>
+
+<!-- ================= Student Registration Form ================= -->
+<h2 style="text-align:center;">Student Registration</h2>
+<form action="success.html" style="width:90%;max-width:400px;margin:auto;">
+  <label>Student Name:</label><br>
+  <input type="text" required style="width:100%;padding:8px;"><br><br>
+
+  <label>Class:</label><br>
+  <input type="text" required style="width:100%;padding:8px;"><br><br>
+
+  <label>Mobile Number:</label><br>
+  <input type="tel" required style="width:100%;padding:8px;"><br><br>
+
+  <button style="padding:10px 20px;background:green;color:white;border:none;">
+    Submit
+  </button>
+</form>
+
+<hr>
+
+<!-- ================= Courses Section ================= -->
+<h2 style="text-align:center; margin-top:50px;">Our Courses</h2>
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+  <div style="border:1px solid #ccc; padding:20px; border-radius:10px; width:200px;">
+    <h3>Math Basics</h3>
+    <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
+    <a href="#" style="background:#2a9d8f;color:white;padding:8px 15px;border-radius:5px;text-decoration:none;">Enroll</a>
+  </div>
+  <div style="border:1px solid #ccc; padding:20px; border-radius:10px; width:200px;">
+    <h3>English Grammar</h3>
+    <p>Grammar rules এবং exercises সহ।</p>
+    <a href="#" style="background:#2a9d8f;color:white;padding:8px 15px;border-radius:5px;text-decoration:none;">Enroll</a>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================= Downloadable Notes Section ================= -->
+<h2 style="text-align:center; margin-top:50px;">Download Notes</h2>
+<ul style="max-width:500px; margin:auto; text-align:left;">
+  <li><a href="notes/math.pdf" download>Math Notes</a></li>
+  <li><a href="notes/english.pdf" download>English Notes</a></li>
+  <li><a href="notes/science.pdf" download>Science Notes</a></li>
+</ul>
+
+<hr>
+
+<!-- ================= Contact Section ================= -->
+<h2 style="text-align:center; margin-top:50px;">Contact Us</h2>
+<form action="#" style="max-width:400px; margin:auto;">
+  <label>Name:</label><br>
+  <input type="text" required style="width:100%; padding:8px;"><br><br>
+  
+  <label>Email:</label><br>
+  <input type="email" required style="width:100%; padding:8px;"><br><br>
+  
+  <label>Message:</label><br>
+  <textarea style="width:100%; padding:8px;"></textarea><br><br>
+  
+  <button style="background:#2a9d8f; color:white; padding:10px 20px; border:none; border-radius:5px;">Send</button>
+    </form>
 </body>
 </html>
