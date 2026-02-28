@@ -1,166 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduHub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#f4f6f9;
-text-align:center;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
 
-.container{
-width:90%;
-max-width:400px;
-margin:auto;
-background:white;
-padding:25px;
-margin-top:40px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+        }
 
-.logo{
-width:120px;
-margin-bottom:10px;
-}
+        header h1 {
+            margin: 5px 0;
+        }
 
-h2{
-margin:10px 0;
-}
+        .logo {
+            margin-top: 20px;
+        }
 
-input{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
-}
+        .logo img {
+            width: 140px;
+        }
 
-button{
-width:100%;
-padding:10px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-}
+        .section {
+            margin: 40px auto;
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-button:hover{
-background:#0056b3;
-}
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-#otpSection,#mainContent{
-display:none;
-}
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-.course-box{
-background:#eef3ff;
-margin:10px;
-padding:10px;
-border-radius:6px;
-}
+        button:hover {
+            background: #1d4ed8;
+        }
 
-footer{
-margin-top:30px;
-padding:10px;
-background:#222;
-color:white;
-font-size:14px;
-}
-</style>
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            background: #1e3a8a;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container" id="formSection">
-<img src="logo.png" class="logo">
-<h2>Student Registration</h2>
+<header>
+    <h1>EduHub</h1>
+    <p>Excel With Us</p>
+</header>
 
-<input type="text" id="name" placeholder="Your Name">
-<input type="text" id="class" placeholder="Class">
-<input type="tel" id="phone" placeholder="Phone Number">
-
-<button onclick="sendOTP()">Send OTP</button>
-<p id="msg"></p>
+<!-- ✅ LOGO (images.jpeg ব্যবহার করা হয়েছে) -->
+<div class="logo">
+    <img src="images.jpeg" alt="EduHub Logo">
 </div>
 
-
-<div class="container" id="otpSection">
-<h2>OTP Verification</h2>
-<input type="text" id="otpInput" placeholder="Enter OTP">
-<button onclick="verifyOTP()">Verify</button>
-<p id="otpMsg"></p>
+<div class="section">
+    <h2>Student Registration</h2>
+    <input type="text" placeholder="Your Name"><br>
+    <input type="tel" placeholder="Phone Number"><br>
+    <input type="email" placeholder="Email"><br>
+    <button>Submit</button>
 </div>
 
-
-<div id="mainContent">
-<div class="container">
-<h2>Courses</h2>
-<div class="course-box">Mathematics</div>
-<div class="course-box">Science</div>
-<div class="course-box">English</div>
-</div>
-
-<div class="container">
-<h2>Downloadable Notes</h2>
-<div class="course-box">Class 10 Notes PDF</div>
-<div class="course-box">Class 9 Notes PDF</div>
-</div>
-
-<div class="container">
-<h2>Contact</h2>
-<p>Phone: 9876543210</p>
-<p>Email: eduhub@email.com</p>
-</div>
+<div class="section">
+    <h2>Contact Us</h2>
+    <textarea rows="4" placeholder="Your Message"></textarea><br>
+    <button>Send Message</button>
 </div>
 
 <footer>
-© 2026 EduHub | All Rights Reserved
+    © 2026 EduHub | All Rights Reserved
 </footer>
 
-
-<script>
-let generatedOTP="";
-
-function sendOTP(){
-
-let name=document.getElementById("name").value;
-let studentClass=document.getElementById("class").value;
-let phone=document.getElementById("phone").value;
-
-if(name=="" || studentClass=="" || phone==""){
-document.getElementById("msg").innerText="Fill all fields!";
-return;
-}
-
-generatedOTP=Math.floor(1000+Math.random()*9000);
-
-alert("Demo OTP: "+generatedOTP); // OTP user কে দেখাবে
-
-document.getElementById("formSection").style.display="none";
-document.getElementById("otpSection").style.display="block";
-}
-
-function verifyOTP(){
-
-let entered=document.getElementById("otpInput").value;
-
-if(entered==generatedOTP){
-document.getElementById("otpSection").style.display="none";
-document.getElementById("mainContent").style.display="block";
-}
-else{
-document.getElementById("otpMsg").innerText="Wrong OTP!";
-}
-}
-</script>
-
 </body>
-  </html>
+</html>
