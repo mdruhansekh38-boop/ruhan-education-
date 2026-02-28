@@ -6,9 +6,10 @@
 <style>
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  text-align: center;
   background: #f0f0f0;
+  text-align: center;
 }
 
 /* Slider */
@@ -17,6 +18,7 @@ body {
   height: 300px;
   position: relative;
   overflow: hidden;
+  margin: 0;
 }
 
 .slide {
@@ -24,6 +26,8 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
   transition: opacity 1s;
 }
@@ -33,16 +37,16 @@ body {
 }
 
 /* Form Box */
-.form-box {
-  background: white;
-  max-width: 400px;
+.box {
+  background: #fff;
+  max-width: 500px;
   margin: 20px auto;
   padding: 30px;
   border-radius: 10px;
   text-align: left;
 }
 
-input {
+form input, form textarea, form select {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -50,40 +54,60 @@ input {
 }
 
 button {
-  background: #2a9d8f;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 16px;
-  margin-top: 10px;
+  background:#2a9d8f;
+  color:white;
+  padding:10px 20px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-/* OTP Section hidden initially */
-#otp-section {
-  display: none;
+a.button {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  background:#2a9d8f;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
 }
 </style>
 </head>
 <body>
 
-<!-- ================= Slider ================= -->
+<!-- Slider -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- ================= Slider JS ================= -->
+<!-- Registration Form -->
+<div class="box">
+  <h1 style="color:#2a9d8f; text-align:center;">Ruhan Education</h1>
+  <hr>
+  <form id="registration-form" action="https://formspree.io/f/mnqwrjlb" method="POST">
+    <label>Student Name:</label>
+    <input type="text" name="name" required>
+    
+    <label>Class:</label>
+    <input type="text" name="class" required>
+    
+    <label>Phone Number:</label>
+    <input type="tel" name="phone" id="phone" required>
+    
+    <div id="otp-section" style="display:none;">
+      <label>Enter OTP:</label>
+      <input type="text" id="otp-input" placeholder="Enter OTP" required>
+      <button type="button" id="verify-otp">Verify OTP</button>
+    </div>
+    
+    <button type="button" id="send-otp">Send OTP</button>
+  </form>
+</div>
+
 <script>
+// Slider JS
 let slides = document.querySelectorAll('.slide');
 let currentIndex = 0;
 function showSlide() {
@@ -93,65 +117,31 @@ function showSlide() {
   if(currentIndex >= slides.length) currentIndex = 0;
 }
 setInterval(showSlide, 3000);
-</script>
 
-<!-- ================= Registration Form ================= -->
-<div class="form-box">
-  <h2 style="text-align:center;">Student Registration</h2>
-  
-  <div id="error" class="error"></div>
-  
-  <label>Student Name:</label>
-  <input type="text" id="name" placeholder="Enter your name" required>
-  
-  <label>Class:</label>
-  <input type="text" id="class" placeholder="Enter your class" required>
-  
-  <label>Phone Number:</label>
-  <input type="tel" id="phone" placeholder="Enter your phone number" required>
-  
-  <button id="send-otp">Send OTP</button>
-  
-  <!-- OTP Input -->
-  <div id="otp-section">
-    <label>Enter OTP:</label>
-    <input type="text" id="otp-input" placeholder="Enter OTP">
-    <button id="verify-otp">Verify OTP</button>
-  </div>
-</div>
-
-<script>
-// OTP logic (simulated)
-let generatedOTP = null;
-
+// OTP JS
+let currentOTP = '';
 document.getElementById('send-otp').addEventListener('click', function() {
-  let phone = document.getElementById('phone').value.trim();
+  const phone = document.getElementById('phone').value.trim();
   if(phone === '') {
-    document.getElementById('error').textContent = 'Please enter phone number.';
+    alert('Please enter phone number.');
     return;
   }
-  // Generate 4-digit OTP
-  generatedOTP = Math.floor(1000 + Math.random() * 9000);
-  console.log('Generated OTP:', generatedOTP); // For testing in console
-  alert('OTP Sent! (Simulated: ' + generatedOTP + ')'); // Simulate SMS
+  // Generate random 4-digit OTP
+  currentOTP = Math.floor(1000 + Math.random() * 9000).toString();
+  alert('OTP Sent to your phone! (Simulated): ' + currentOTP);
   document.getElementById('otp-section').style.display = 'block';
-  document.getElementById('error').textContent = '';
 });
 
 document.getElementById('verify-otp').addEventListener('click', function() {
-  let enteredOTP = document.getElementById('otp-input').value.trim();
-  if(enteredOTP === '') {
-    document.getElementById('error').textContent = 'Please enter OTP.';
-    return;
-  }
-  if(enteredOTP == generatedOTP) {
-    // Success
-    window.location.href = 'success.html';
+  const otpInput = document.getElementById('otp-input').value.trim();
+  if(otpInput === currentOTP) {
+    document.getElementById('registration-form').submit();
+    alert('OTP Verified! Form Submitted.');
   } else {
-    document.getElementById('error').textContent = 'Invalid OTP. Try again.';
+    alert('Incorrect OTP. Try again.');
   }
 });
 </script>
 
 </body>
-      </html>
+        </html>
