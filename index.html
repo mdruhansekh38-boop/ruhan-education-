@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-<title>My Education Website</title>
-
+<meta charset="UTF-8">
+<title>Ruhan Education - Registration</title>
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
 }
 
-/* Top Slider */
+/* Slider */
 .slider {
   width: 100%;
   height: 300px;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
 .slide {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
   position: absolute;
   opacity: 0;
@@ -30,70 +32,97 @@ body {
   opacity: 1;
 }
 
-.content {
-  padding: 20px;
-  text-align: center;
+/* Registration Form Box */
+.box {
+  background: #fff;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+button {
+  background: #2a9d8f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  display: none;
+  margin-bottom: 10px;
 }
 </style>
-
 </head>
 <body>
 
-<!-- ✅ Auto Changing Photo Slider -->
-
-  
+<!-- Slider -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
-  
-  
 
+<!-- Registration Form with OTP -->
+<div class="box">
+  <h2 style="color:#2a9d8f; text-align:center;">Student Registration</h2>
+  <div class="error" id="error-msg">ভুল OTP! আবার চেষ্টা করুন।</div>
+  <form id="regForm">
+    <label>Student Name:</label>
+    <input type="text" id="name" required>
 
-<div class="content">
-  <h1>Welcome to My Education Website</h1>
-  <p>এখানে Student Registration, Course, Notes সব থাকবে।</p>
+    <label>Class:</label>
+    <input type="text" id="class" required>
+
+    <label>Mobile Number:</label>
+    <input type="tel" id="phone" required>
+
+    <label>Enter OTP:</label>
+    <input type="text" id="otp" required placeholder="1234">
+
+    <button type="submit">Submit</button>
+  </form>
 </div>
 
+<!-- Slider JS -->
 <script>
 let slides = document.querySelectorAll('.slide');
 let index = 0;
-
 function showSlide() {
-  slides.forEach(slide => slide.classList.remove('active'));
+  slides.forEach(s => s.classList.remove('active'));
   slides[index].classList.add('active');
-
   index++;
-  if (index === slides.length) {
-    index = 0;
-  }
+  if(index >= slides.length) index = 0;
 }
-
 setInterval(showSlide, 3000);
 </script>
-<br><br>
-<hr>
 
-<h2 style="text-align:center;">Student Registration</h2>
+<!-- Form + OTP JS -->
+<script>
+const form = document.getElementById('regForm');
+const errorMsg = document.getElementById('error-msg');
+const correctOTP = "1234"; // তোমার OTP set
 
-<form action="success.html" style="width:90%;max-width:400px;margin:auto;">
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const enteredOTP = document.getElementById('otp').value;
+  if(enteredOTP === correctOTP){
+    window.location.href = "success.html"; // OTP correct হলে success.html এ যাবে
+  } else {
+    errorMsg.style.display = 'block';
+  }
+});
+</script>
 
-<label>Student Name:</label><br>
-<input type="text" required style="width:100%;padding:8px;"><br><br>
-
-<label>Class:</label><br>
-<input type="text" required style="width:100%;padding:8px;"><br><br>
-
-<label>Mobile Number:</label><br>
-<input type="tel" required style="width:100%;padding:8px;"><br><br>
-
-<button style="padding:10px 20px;background:green;color:white;border:none;">
-Submit
-</button>
-
-</form>
-<br><br>
-  
 </body>
-</html>
+  </html>
