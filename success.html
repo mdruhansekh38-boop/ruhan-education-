@@ -1,40 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
+<meta charset="UTF-8">
 <title>Registration Success</title>
 
 <style>
 body {
-  font-family: Arial;
-  text-align: center;
-  background: #f0f0f0;
   margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  text-align: center;
 }
 
-/* Box for success message */
-.box {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: 20px auto;
-}
-
-/* Slider CSS */
+/* Slider */
 .slider {
   width: 100%;
-  max-width: 600px;
-  height: 300px; /* Slider height */
-  margin: 10px auto 10px auto; /* উপরের margin কমানো */
+  height: 300px;
   position: relative;
   overflow: hidden;
 }
 
 .slide {
   width: 100%;
-  height: 100%; /* Slider full height */
-  object-fit: cover; /* ছবি proportion ঠিক থাকবে */
+  height: 100%;
+  object-fit: cover;
   position: absolute;
   opacity: 0;
   transition: opacity 1s;
@@ -44,53 +33,147 @@ body {
   opacity: 1;
 }
 
-/* Back to Home Button */
+/* Success Box */
+.box {
+  background: #fff;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* Form & Sections */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: left;
+}
+form input, form textarea, form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background:#2a9d8f;
+  color:white;
+  padding:10px 20px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
 a.button {
-  text-decoration: none;
-  color: white;
-  background: #2a9d8f;
-  padding: 12px 25px;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 20px;
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  background:#2a9d8f;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
+}
+
+/* Sections */
+section {
+  margin: 40px 0;
 }
 </style>
 </head>
 <body>
 
-<!-- ================= Slider ================= -->
+<!-- Slider -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- ================= Success Box ================= -->
+<!-- Success Box -->
 <div class="box">
   <h1 style="color:#2a9d8f;">My Education Website</h1>
   <hr>
   <h2 style="color:green;">✅ Registration Successful!</h2>
-  <p style="font-size:18px;">ধন্যবাদ! আপনার ফর্ম জমা হয়েছে।</p>
-  <p style="font-size:16px; color:#555;">
-    আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে। আমাদের সাথে থাকুন এবং নতুন কোর্সগুলো দেখুন!
-  </p>
+  <p>ধন্যবাদ! আপনার ফর্ম জমা হয়েছে।</p>
+  <p style="color:#555;">আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে। আমাদের সাথে থাকুন এবং নতুন কোর্সগুলো দেখুন!</p>
   <a href="index.html" class="button">⬅ Back to Home</a>
 </div>
 
-<!-- ================= Slider JS ================= -->
+<!-- Student Registration Form -->
+<section>
+<h2 style="text-align:center;">Student Registration</h2>
+<form action="success.html">
+  <label>Student Name:</label>
+  <input type="text" required>
+  
+  <label>Class:</label>
+  <input type="text" required>
+  
+  <label>Mobile Number:</label>
+  <input type="tel" required>
+  
+  <button type="submit">Submit</button>
+</form>
+</section>
+
+<!-- Courses -->
+<section>
+<h2>Our Courses</h2>
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+  <div style="border:1px solid #ccc; padding:20px; border-radius:10px; width:200px;">
+    <h3>Math Basics</h3>
+    <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
+    <a href="#" class="button">Enroll</a>
+  </div>
+  <div style="border:1px solid #ccc; padding:20px; border-radius:10px; width:200px;">
+    <h3>English Grammar</h3>
+    <p>Grammar rules এবং exercises সহ।</p>
+    <a href="#" class="button">Enroll</a>
+  </div>
+</div>
+</section>
+
+<!-- Downloadable Notes -->
+<section>
+<h2>Download Notes</h2>
+<ul style="max-width:500px; margin:auto; text-align:left;">
+  <li><a href="notes/math.pdf" download>Math Notes</a></li>
+  <li><a href="notes/english.pdf" download>English Notes</a></li>
+  <li><a href="notes/science.pdf" download>Science Notes</a></li>
+</ul>
+</section>
+
+<!-- Contact -->
+<section>
+<h2>Contact Us</h2>
+<form action="#">
+  <label>Name:</label>
+  <input type="text" required>
+  
+  <label>Email:</label>
+  <input type="email" required>
+  
+  <label>Message:</label>
+  <textarea></textarea>
+  
+  <button type="submit">Send</button>
+</form>
+</section>
+
+<!-- Slider JS -->
 <script>
 let slides = document.querySelectorAll('.slide');
-let index = 0;
+let currentIndex = 0;
 
 function showSlide() {
   slides.forEach(slide => slide.classList.remove('active'));
-  slides[index].classList.add('active');
-  index++;
-  if(index === slides.length){ index = 0; }
+  slides[currentIndex].classList.add('active');
+  currentIndex++;
+  if(currentIndex >= slides.length) currentIndex = 0;
 }
 
 setInterval(showSlide, 3000);
 </script>
 
 </body>
-</html>
+    </html>
