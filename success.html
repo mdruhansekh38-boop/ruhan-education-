@@ -14,7 +14,7 @@ body {
 /* Slider */
 .slider {
   width: 100%;
-  height: 400px; /* index.html-এর মতো reasonable height */
+  height: 400px; /* পূর্বের মতো photo height ঠিক রাখল */
   position: relative;
   overflow: hidden;
   margin: 0;
@@ -81,18 +81,37 @@ a.button {
   text-decoration:none;
   border-radius:5px;
 }
+
+/* Courses Cards */
+.card {
+  border:1px solid #ccc;
+  padding:20px;
+  border-radius:10px;
+  width:200px;
+  text-align:center;
+}
+
+.card a {
+  background:#2a9d8f;
+  color:white;
+  padding:8px 15px;
+  border-radius:5px;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:10px;
+}
 </style>
 </head>
 <body>
 
-<!-- Slider -->
+<!-- ================= Slider ================= -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- Success Box -->
+<!-- ================= Success Box ================= -->
 <div class="box">
   <h1 style="color:#2a9d8f;">Ruhan Education</h1>
   <hr>
@@ -102,7 +121,68 @@ a.button {
   <a href="index.html" class="button">⬅ Back to Home</a>
 </div>
 
-<!-- Slider JS -->
+<!-- ================= Student Registration Form ================= -->
+<section>
+<h2>Student Registration</h2>
+<form action="success.html">
+  <label>Student Name:</label>
+  <input type="text" required>
+  
+  <label>Class:</label>
+  <input type="text" required>
+  
+  <label>Mobile Number:</label>
+  <input type="tel" required>
+  
+  <button type="submit">Submit</button>
+</form>
+</section>
+
+<!-- ================= Courses Section ================= -->
+<section>
+<h2>Our Courses</h2>
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+  <div class="card">
+    <h3>Math Basics</h3>
+    <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
+    <a href="#" class="button">Enroll</a>
+  </div>
+  <div class="card">
+    <h3>English Grammar</h3>
+    <p>Grammar rules এবং exercises সহ।</p>
+    <a href="#" class="button">Enroll</a>
+  </div>
+</div>
+</section>
+
+<!-- ================= Downloadable Notes Section ================= -->
+<section>
+<h2>Download Notes</h2>
+<ul style="max-width:500px; margin:auto; text-align:left;">
+  <li><a href="notes/math.pdf" download>Math Notes</a></li>
+  <li><a href="notes/english.pdf" download>English Notes</a></li>
+  <li><a href="notes/science.pdf" download>Science Notes</a></li>
+</ul>
+</section>
+
+<!-- ================= Contact Section ================= -->
+<section>
+<h2>Contact Us</h2>
+<form action="#">
+  <label>Name:</label>
+  <input type="text" required>
+  
+  <label>Email:</label>
+  <input type="email" required>
+  
+  <label>Message:</label>
+  <textarea></textarea>
+  
+  <button type="submit">Send</button>
+</form>
+</section>
+
+<!-- ================= Slider JS ================= -->
 <script>
 let slides = document.querySelectorAll('.slide');
 let currentIndex = 0;
@@ -118,4 +198,4 @@ setInterval(showSlide, 3000);
 </script>
 
 </body>
-</html>
+  </html>
