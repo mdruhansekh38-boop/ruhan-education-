@@ -1,105 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduHub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduHub</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    text-align:center;
+}
 
-        header {
-            background: #1e3a8a;
-            color: white;
-            padding: 20px;
-        }
+/* ===== SLIDER ===== */
+.slider{
+    width:100%;
+    height:300px;
+    position:relative;
+    overflow:hidden;
+}
 
-        header h1 {
-            margin: 5px 0;
-        }
+.slide{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    position:absolute;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
 
-        .logo {
-            margin-top: 20px;
-        }
+.slide.active{
+    opacity:1;
+}
 
-        .logo img {
-            width: 140px;
-        }
+/* ===== LOGO ===== */
+.logo{
+    margin-top:20px;
+}
 
-        .section {
-            margin: 40px auto;
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+.logo img{
+    width:140px;
+}
 
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+/* ===== CONTENT BOX ===== */
+.container{
+    max-width:500px;
+    background:white;
+    margin:30px auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
-        button {
-            background: #2563eb;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+input,button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
 
-        footer {
-            margin-top: 40px;
-            padding: 15px;
-            background: #1e3a8a;
-            color: white;
-        }
-    </style>
+button:hover{
+    background:#0056b3;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    margin-top:40px;
+    padding:15px;
+    background:#222;
+    color:white;
+    font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>EduHub</h1>
-    <p>Excel With Us</p>
-</header>
-
-<!-- ✅ LOGO (images.jpeg ব্যবহার করা হয়েছে) -->
-<div class="logo">
-    <img src="images.jpeg" alt="EduHub Logo">
+<!-- ===== TOP AUTO IMAGE SLIDER ===== -->
+<div class="slider">
+    <img src="IMG-20260211-WA0102.jpg" class="slide active">
+    <img src="IMG-20260211-WA0101.jpg" class="slide">
+    <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<div class="section">
+<!-- ===== LOGO BELOW SLIDER ===== -->
+<div class="logo">
+    <img src="images.jpeg">
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
     <h2>Student Registration</h2>
-    <input type="text" placeholder="Your Name"><br>
-    <input type="tel" placeholder="Phone Number"><br>
-    <input type="email" placeholder="Email"><br>
+
+    <input type="text" placeholder="Full Name">
+    <input type="tel" placeholder="Phone Number">
+    <input type="text" placeholder="Course Name">
+
     <button>Submit</button>
 </div>
 
-<div class="section">
-    <h2>Contact Us</h2>
-    <textarea rows="4" placeholder="Your Message"></textarea><br>
-    <button>Send Message</button>
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    © 2026 EduHub | All Rights Reserved
 </div>
 
-<footer>
-    © 2026 EduHub | All Rights Reserved
-</footer>
+<script>
+/* ===== AUTO SLIDER SCRIPT ===== */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(()=>{
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+},3000);
+</script>
 
 </body>
-</html>
+    </html>
