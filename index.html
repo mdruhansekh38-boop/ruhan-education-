@@ -32,97 +32,126 @@ body {
   opacity: 1;
 }
 
-/* Registration Form Box */
-.box {
-  background: #fff;
-  max-width: 500px;
+/* Form Box */
+.form-box {
+  background: white;
+  max-width: 400px;
   margin: 20px auto;
   padding: 30px;
   border-radius: 10px;
   text-align: left;
 }
 
-input, button {
+input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
+  padding: 8px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
 button {
   background: #2a9d8f;
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .error {
   color: red;
-  display: none;
+  font-size: 14px;
   margin-bottom: 10px;
+}
+
+/* OTP Section hidden initially */
+#otp-section {
+  display: none;
 }
 </style>
 </head>
 <body>
 
-<!-- Slider -->
+<!-- ================= Slider ================= -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- Registration Form with OTP -->
-<div class="box">
-  <h2 style="color:#2a9d8f; text-align:center;">Student Registration</h2>
-  <div class="error" id="error-msg">ভুল OTP! আবার চেষ্টা করুন।</div>
-  <form id="regForm">
-    <label>Student Name:</label>
-    <input type="text" id="name" required>
-
-    <label>Class:</label>
-    <input type="text" id="class" required>
-
-    <label>Mobile Number:</label>
-    <input type="tel" id="phone" required>
-
-    <label>Enter OTP:</label>
-    <input type="text" id="otp" required placeholder="1234">
-
-    <button type="submit">Submit</button>
-  </form>
-</div>
-
-<!-- Slider JS -->
+<!-- ================= Slider JS ================= -->
 <script>
 let slides = document.querySelectorAll('.slide');
-let index = 0;
+let currentIndex = 0;
 function showSlide() {
-  slides.forEach(s => s.classList.remove('active'));
-  slides[index].classList.add('active');
-  index++;
-  if(index >= slides.length) index = 0;
+  slides.forEach(slide => slide.classList.remove('active'));
+  slides[currentIndex].classList.add('active');
+  currentIndex++;
+  if(currentIndex >= slides.length) currentIndex = 0;
 }
 setInterval(showSlide, 3000);
 </script>
 
-<!-- Form + OTP JS -->
-<script>
-const form = document.getElementById('regForm');
-const errorMsg = document.getElementById('error-msg');
-const correctOTP = "1234"; // তোমার OTP set
+<!-- ================= Registration Form ================= -->
+<div class="form-box">
+  <h2 style="text-align:center;">Student Registration</h2>
+  
+  <div id="error" class="error"></div>
+  
+  <label>Student Name:</label>
+  <input type="text" id="name" placeholder="Enter your name" required>
+  
+  <label>Class:</label>
+  <input type="text" id="class" placeholder="Enter your class" required>
+  
+  <label>Phone Number:</label>
+  <input type="tel" id="phone" placeholder="Enter your phone number" required>
+  
+  <button id="send-otp">Send OTP</button>
+  
+  <!-- OTP Input -->
+  <div id="otp-section">
+    <label>Enter OTP:</label>
+    <input type="text" id="otp-input" placeholder="Enter OTP">
+    <button id="verify-otp">Verify OTP</button>
+  </div>
+</div>
 
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  const enteredOTP = document.getElementById('otp').value;
-  if(enteredOTP === correctOTP){
-    window.location.href = "success.html"; // OTP correct হলে success.html এ যাবে
+<script>
+// OTP logic (simulated)
+let generatedOTP = null;
+
+document.getElementById('send-otp').addEventListener('click', function() {
+  let phone = document.getElementById('phone').value.trim();
+  if(phone === '') {
+    document.getElementById('error').textContent = 'Please enter phone number.';
+    return;
+  }
+  // Generate 4-digit OTP
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  console.log('Generated OTP:', generatedOTP); // For testing in console
+  alert('OTP Sent! (Simulated: ' + generatedOTP + ')'); // Simulate SMS
+  document.getElementById('otp-section').style.display = 'block';
+  document.getElementById('error').textContent = '';
+});
+
+document.getElementById('verify-otp').addEventListener('click', function() {
+  let enteredOTP = document.getElementById('otp-input').value.trim();
+  if(enteredOTP === '') {
+    document.getElementById('error').textContent = 'Please enter OTP.';
+    return;
+  }
+  if(enteredOTP == generatedOTP) {
+    // Success
+    window.location.href = 'success.html';
   } else {
-    errorMsg.style.display = 'block';
+    document.getElementById('error').textContent = 'Invalid OTP. Try again.';
   }
 });
 </script>
 
 </body>
-  </html>
+      </html>
