@@ -1,147 +1,166 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Ruhan Education - Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduHub</title>
+
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
-  text-align: center;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f4f6f9;
+text-align:center;
 }
 
-/* Slider */
-.slider {
-  width: 100%;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
+.container{
+width:90%;
+max-width:400px;
+margin:auto;
+background:white;
+padding:25px;
+margin-top:40px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-.slide {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s;
+.logo{
+width:120px;
+margin-bottom:10px;
 }
 
-.slide.active {
-  opacity: 1;
+h2{
+margin:10px 0;
 }
 
-/* Form Box */
-.box {
-  background: #fff;
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: left;
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
-form input, form textarea, form select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+button{
+width:100%;
+padding:10px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
 }
 
-button {
-  background:#2a9d8f;
-  color:white;
-  padding:10px 20px;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
+button:hover{
+background:#0056b3;
 }
 
-a.button {
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
-  background:#2a9d8f;
-  color:white;
-  text-decoration:none;
-  border-radius:5px;
+#otpSection,#mainContent{
+display:none;
+}
+
+.course-box{
+background:#eef3ff;
+margin:10px;
+padding:10px;
+border-radius:6px;
+}
+
+footer{
+margin-top:30px;
+padding:10px;
+background:#222;
+color:white;
+font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
-<!-- Slider -->
-<div class="slider">
-  <img src="IMG-20260211-WA0102.jpg" class="slide active">
-  <img src="IMG-20260211-WA0101.jpg" class="slide">
-  <img src="20260211_160932.jpg" class="slide">
+<div class="container" id="formSection">
+<img src="logo.png" class="logo">
+<h2>Student Registration</h2>
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="class" placeholder="Class">
+<input type="tel" id="phone" placeholder="Phone Number">
+
+<button onclick="sendOTP()">Send OTP</button>
+<p id="msg"></p>
 </div>
 
-<!-- Registration Form -->
-<div class="box">
-  <h1 style="color:#2a9d8f; text-align:center;">Ruhan Education</h1>
-  <hr>
-  <form id="registration-form" action="https://formspree.io/f/mnqwrjlb" method="POST">
-    <label>Student Name:</label>
-    <input type="text" name="name" required>
-    
-    <label>Class:</label>
-    <input type="text" name="class" required>
-    
-    <label>Phone Number:</label>
-    <input type="tel" name="phone" id="phone" required>
-    
-    <div id="otp-section" style="display:none;">
-      <label>Enter OTP:</label>
-      <input type="text" id="otp-input" placeholder="Enter OTP" required>
-      <button type="button" id="verify-otp">Verify OTP</button>
-    </div>
-    
-    <button type="button" id="send-otp">Send OTP</button>
-  </form>
+
+<div class="container" id="otpSection">
+<h2>OTP Verification</h2>
+<input type="text" id="otpInput" placeholder="Enter OTP">
+<button onclick="verifyOTP()">Verify</button>
+<p id="otpMsg"></p>
 </div>
+
+
+<div id="mainContent">
+<div class="container">
+<h2>Courses</h2>
+<div class="course-box">Mathematics</div>
+<div class="course-box">Science</div>
+<div class="course-box">English</div>
+</div>
+
+<div class="container">
+<h2>Downloadable Notes</h2>
+<div class="course-box">Class 10 Notes PDF</div>
+<div class="course-box">Class 9 Notes PDF</div>
+</div>
+
+<div class="container">
+<h2>Contact</h2>
+<p>Phone: 9876543210</p>
+<p>Email: eduhub@email.com</p>
+</div>
+</div>
+
+<footer>
+© 2026 EduHub | All Rights Reserved
+</footer>
+
 
 <script>
-// Slider JS
-let slides = document.querySelectorAll('.slide');
-let currentIndex = 0;
-function showSlide() {
-  slides.forEach(slide => slide.classList.remove('active'));
-  slides[currentIndex].classList.add('active');
-  currentIndex++;
-  if(currentIndex >= slides.length) currentIndex = 0;
+let generatedOTP="";
+
+function sendOTP(){
+
+let name=document.getElementById("name").value;
+let studentClass=document.getElementById("class").value;
+let phone=document.getElementById("phone").value;
+
+if(name=="" || studentClass=="" || phone==""){
+document.getElementById("msg").innerText="Fill all fields!";
+return;
 }
-setInterval(showSlide, 3000);
 
-// OTP JS
-let currentOTP = '';
-document.getElementById('send-otp').addEventListener('click', function() {
-  const phone = document.getElementById('phone').value.trim();
-  if(phone === '') {
-    alert('Please enter phone number.');
-    return;
-  }
-  // Generate random 4-digit OTP
-  currentOTP = Math.floor(1000 + Math.random() * 9000).toString();
-  alert('OTP Sent to your phone! (Simulated): ' + currentOTP);
-  document.getElementById('otp-section').style.display = 'block';
-});
+generatedOTP=Math.floor(1000+Math.random()*9000);
 
-document.getElementById('verify-otp').addEventListener('click', function() {
-  const otpInput = document.getElementById('otp-input').value.trim();
-  if(otpInput === currentOTP) {
-    document.getElementById('registration-form').submit();
-    alert('OTP Verified! Form Submitted.');
-  } else {
-    alert('Incorrect OTP. Try again.');
-  }
-});
+alert("Demo OTP: "+generatedOTP); // OTP user কে দেখাবে
+
+document.getElementById("formSection").style.display="none";
+document.getElementById("otpSection").style.display="block";
+}
+
+function verifyOTP(){
+
+let entered=document.getElementById("otpInput").value;
+
+if(entered==generatedOTP){
+document.getElementById("otpSection").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}
+else{
+document.getElementById("otpMsg").innerText="Wrong OTP!";
+}
+}
 </script>
 
 </body>
-        </html>
+  </html>
