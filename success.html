@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>Ruhan Education</title>
+<title>Ruhan Education - Registration Success</title>
 <style>
 body {
   margin:0;
@@ -37,70 +37,31 @@ body {
   margin:15px 0;
 }
 
-/* Registration Form */
-.form-box {
+/* Success Box */
+.box {
   background:#fff;
-  max-width:400px;
+  max-width:500px;
   margin:20px auto;
-  padding:25px;
+  padding:30px;
   border-radius:10px;
-  text-align:left;
-}
-
-.form-box input, .form-box button {
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  box-sizing:border-box;
-}
-
-button {
-  background:#2a9d8f;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-button:hover {
-  background:#21867a;
-}
-
-/* Courses & Cards */
-.card {
-  border:1px solid #ccc;
-  padding:20px;
-  border-radius:10px;
-  width:200px;
   text-align:center;
-  margin-bottom:15px;
-}
-.card a {
-  display:inline-block;
-  margin-top:10px;
-  padding:8px 15px;
-  background:#2a9d8f;
-  color:white;
-  text-decoration:none;
-  border-radius:5px;
+  color:green;
+  font-size:22px;
+  font-weight:bold;
 }
 
-/* Sections */
-section {
-  margin:40px 0;
-}
-
-/* Downloadable Notes */
+/* Notes Section */
 ul {
   max-width:500px;
   margin:auto;
   text-align:left;
   padding-left:20px;
+  line-height:1.8;
 }
 
-/* Contact Form */
-form, input, textarea, button {
-  font-family: Arial, sans-serif;
+a {
+  text-decoration:none;
+  color:#2a9d8f;
 }
 
 /* Footer */
@@ -127,53 +88,12 @@ form, input, textarea, button {
   <img src="images.jpeg" alt="Ruhan Education Logo" width="200">
 </div>
 
-<!-- Registration Form -->
-<div class="form-box">
-  <h2>Student Registration</h2>
-  <form onsubmit="return verifyOTPRedirect(event)">
-    <input type="text" placeholder="Student Name" required>
-    <input type="text" placeholder="Class" required>
-    <input type="tel" placeholder="Phone Number" required>
-    <input type="text" id="otp" placeholder="Enter OTP" required>
-
-    <button type="button" onclick="sendOTP()">Generate OTP</button><br><br>
-    <button type="submit">Submit</button>
-  </form>
+<!-- Success Message -->
+<div class="box">
+  ✅ Registration Successful!
 </div>
 
-<!-- Courses Section -->
-<section>
-  <h2>Our Courses</h2>
-  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-    <div class="card">
-      <h3>Math Basics</h3>
-      <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
-      <a href="math.html">Enroll</a>
-    </div>
-    <div class="card">
-      <h3>English Grammar</h3>
-      <p>Grammar rules এবং exercises সহ।</p>
-      <a href="english.html">Enroll</a>
-    </div>
-    <div class="card">
-      <h3>Physics</h3>
-      <p>Basic থেকে Advanced Physics concepts।</p>
-      <a href="physics.html">Enroll</a>
-    </div>
-    <div class="card">
-      <h3>Chemistry</h3>
-      <p>Basic থেকে Advanced Chemistry concepts।</p>
-      <a href="chemistry.html">Enroll</a>
-    </div>
-    <div class="card">
-      <h3>Biology</h3>
-      <p>Plant, Animal, Human Biology guide।</p>
-      <a href="biology.html">Enroll</a>
-    </div>
-  </div>
-</section>
-
-<!-- Downloadable Notes Section -->
+<!-- Notes Section -->
 <section>
   <h2>Download Notes</h2>
   <ul>
@@ -185,28 +105,13 @@ form, input, textarea, button {
   </ul>
 </section>
 
-<!-- Contact Section -->
-<section>
-<h2>Contact Us</h2>
-<form action="#">
-  <label>Name:</label>
-  <input type="text" required>
-  <label>Email:</label>
-  <input type="email" required>
-  <label>Message:</label>
-  <textarea></textarea>
-  <button type="submit">Send</button>
-</form>
-</section>
-
 <!-- Footer -->
 <div class="footer">
   © 2026 Ruhan Education | All Rights Reserved
 </div>
 
-<!-- JS -->
+<!-- JS Slider -->
 <script>
-/* Slider */
 let slides = document.querySelectorAll('.slide');
 let index = 0;
 function showSlide(){
@@ -216,26 +121,7 @@ function showSlide(){
   if(index >= slides.length) index = 0;
 }
 setInterval(showSlide,3000);
-
-/* OTP */
-let generatedOTP = "";
-function sendOTP(){
-  generatedOTP = Math.floor(1000 + Math.random()*9000);
-  alert("Your OTP is: " + generatedOTP);
-}
-
-function verifyOTPRedirect(e){
-  e.preventDefault();
-  let entered = document.getElementById("otp").value;
-  if(entered == generatedOTP){
-    window.location.href = "success.html";
-    return true;
-  } else {
-    alert("❌ Wrong OTP");
-    return false;
-  }
-}
 </script>
 
 </body>
-      </html>
+</html>
