@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Ruhan Education</title>
-
 <style>
 body {
   margin:0;
@@ -19,7 +18,6 @@ body {
   position:relative;
   overflow:hidden;
 }
-
 .slide {
   width:100%;
   height:100%;
@@ -30,7 +28,6 @@ body {
   opacity:0;
   transition:opacity 1s;
 }
-
 .slide.active {
   opacity:1;
 }
@@ -40,16 +37,17 @@ body {
   margin:15px 0;
 }
 
-/* Form Box */
+/* Registration Form */
 .form-box {
   background:#fff;
   max-width:400px;
   margin:20px auto;
   padding:25px;
   border-radius:10px;
+  text-align:left;
 }
 
-input {
+.form-box input, .form-box button {
   width:100%;
   padding:10px;
   margin-bottom:10px;
@@ -59,21 +57,13 @@ input {
 button {
   background:#2a9d8f;
   color:white;
-  padding:10px;
   border:none;
   border-radius:5px;
   cursor:pointer;
-  width:100%;
 }
 
-a.button {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  background:#2a9d8f;
-  color:white;
-  text-decoration:none;
-  border-radius:5px;
+button:hover {
+  background:#21867a;
 }
 
 /* Courses & Cards */
@@ -85,18 +75,32 @@ a.button {
   text-align:center;
   margin-bottom:15px;
 }
+.card a {
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 15px;
+  background:#2a9d8f;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
+}
 
 /* Sections */
 section {
   margin:40px 0;
 }
 
+/* Downloadable Notes */
+ul {
+  max-width:500px;
+  margin:auto;
+  text-align:left;
+  padding-left:20px;
+}
+
 /* Contact Form */
-form textarea {
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  box-sizing:border-box;
+form, input, textarea, button {
+  font-family: Arial, sans-serif;
 }
 
 /* Footer */
@@ -109,80 +113,70 @@ form textarea {
 }
 </style>
 </head>
-
 <body>
 
-<!-- ================= Slider ================= -->
+<!-- Slider -->
 <div class="slider">
   <img src="IMG-20260211-WA0102.jpg" class="slide active">
   <img src="IMG-20260211-WA0101.jpg" class="slide">
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- ================= Logo ================= -->
+<!-- Logo -->
 <div class="logo">
   <img src="images.jpeg" alt="Ruhan Education Logo" width="200">
 </div>
 
-<!-- ================= Registration Form ================= -->
+<!-- Registration Form -->
 <div class="form-box">
   <h2>Student Registration</h2>
-
-  <form action="success.html" method="GET" onsubmit="return verifyOTP()">
+  <form onsubmit="return verifyOTPRedirect(event)">
     <input type="text" placeholder="Student Name" required>
     <input type="text" placeholder="Class" required>
     <input type="tel" placeholder="Phone Number" required>
-
     <input type="text" id="otp" placeholder="Enter OTP" required>
 
-    <button type="button" onclick="sendOTP()">Generate OTP</button>
-    <br><br>
+    <button type="button" onclick="sendOTP()">Generate OTP</button><br><br>
     <button type="submit">Submit</button>
   </form>
 </div>
 
-<!-- ================= Courses Section ================= -->
+<!-- Courses Section -->
 <section>
   <h2>Our Courses</h2>
   <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-
     <div class="card">
       <h3>Math Basics</h3>
       <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
-      <a href="math.html" class="button">Enroll</a>
+      <a href="math.html">Enroll</a>
     </div>
-
     <div class="card">
       <h3>English Grammar</h3>
       <p>Grammar rules এবং exercises সহ।</p>
-      <a href="english.html" class="button">Enroll</a>
+      <a href="english.html">Enroll</a>
     </div>
-
     <div class="card">
       <h3>Physics</h3>
       <p>Basic থেকে Advanced Physics concepts।</p>
-      <a href="physics.html" class="button">Enroll</a>
+      <a href="physics.html">Enroll</a>
     </div>
-
     <div class="card">
       <h3>Chemistry</h3>
       <p>Basic থেকে Advanced Chemistry concepts।</p>
-      <a href="chemistry.html" class="button">Enroll</a>
+      <a href="chemistry.html">Enroll</a>
     </div>
-
     <div class="card">
       <h3>Biology</h3>
-      <p>Plant, Animal, Human Biology সম্পূর্ণ guide।</p>
-      <a href="biology.html" class="button">Enroll</a>
+      <p>Plant, Animal, Human Biology guide।</p>
+      <a href="biology.html">Enroll</a>
     </div>
-
   </div>
 </section>
 
-<!-- ================= Downloadable Notes Section ================= -->
+<!-- Downloadable Notes Section -->
 <section>
   <h2>Download Notes</h2>
-  <ul style="max-width:500px; margin:auto; text-align:left;">
+  <ul>
     <li><a href="notes/math.pdf" download>Math Notes</a></li>
     <li><a href="notes/english.pdf" download>English Notes</a></li>
     <li><a href="notes/physics.pdf" download>Physics Notes</a></li>
@@ -191,29 +185,26 @@ form textarea {
   </ul>
 </section>
 
-<!-- ================= Contact Section ================= -->
+<!-- Contact Section -->
 <section>
-  <h2>Contact Us</h2>
-  <form action="#">
-    <label>Name:</label>
-    <input type="text" required>
-    
-    <label>Email:</label>
-    <input type="email" required>
-    
-    <label>Message:</label>
-    <textarea></textarea>
-    
-    <button type="submit">Send</button>
-  </form>
+<h2>Contact Us</h2>
+<form action="#">
+  <label>Name:</label>
+  <input type="text" required>
+  <label>Email:</label>
+  <input type="email" required>
+  <label>Message:</label>
+  <textarea></textarea>
+  <button type="submit">Send</button>
+</form>
 </section>
 
-<!-- ================= Footer ================= -->
+<!-- Footer -->
 <div class="footer">
   © 2026 Ruhan Education | All Rights Reserved
 </div>
 
-<!-- ================= JS ================= -->
+<!-- JS -->
 <script>
 /* Slider */
 let slides = document.querySelectorAll('.slide');
@@ -226,19 +217,22 @@ function showSlide(){
 }
 setInterval(showSlide,3000);
 
-/* OTP System */
+/* OTP */
 let generatedOTP = "";
 function sendOTP(){
-  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  generatedOTP = Math.floor(1000 + Math.random()*9000);
   alert("Your OTP is: " + generatedOTP);
 }
-function verifyOTP(){
+
+function verifyOTPRedirect(e){
+  e.preventDefault();
   let entered = document.getElementById("otp").value;
   if(entered == generatedOTP){
-    return true;   // যাবে success.html এ
-  }else{
+    window.location.href = "success.html";
+    return true;
+  } else {
     alert("❌ Wrong OTP");
-    return false;  // যাবে না
+    return false;
   }
 }
 </script>
