@@ -2,106 +2,114 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>Ruhan Education - Registration Success</title>
+<title>Ruhan Education</title>
+
 <style>
 body {
-  margin: 0;
+  margin:0;
   font-family: Arial, sans-serif;
-  background: #f0f0f0;
-  text-align: center;
+  background:#f0f0f0;
+  text-align:center;
 }
 
 /* Slider */
 .slider {
-  width: 100%;
-  height: 400px; /* পূর্বের মতো photo height ঠিক রাখল */
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+  width:100%;
+  height:400px;
+  position:relative;
+  overflow:hidden;
 }
 
 .slide {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* proportion ঠিক রাখবে */
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  transition:opacity 1s;
 }
 
 .slide.active {
-  opacity: 1;
+  opacity:1;
 }
 
-/* Success Box */
-.box {
-  background: #fff;
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 30px;
-  border-radius: 10px;
+/* Logo */
+.logo {
+  margin:15px 0;
 }
 
-/* Sections */
-section {
-  margin: 40px 0;
+/* Form Box */
+.form-box {
+  background:#fff;
+  max-width:400px;
+  margin:20px auto;
+  padding:25px;
+  border-radius:10px;
 }
 
-/* Forms */
-form {
-  max-width: 400px;
-  margin: 20px auto;
-  text-align: left;
-}
-form input, form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+input {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  box-sizing:border-box;
 }
 
 button {
   background:#2a9d8f;
   color:white;
-  padding:10px 20px;
+  padding:10px;
   border:none;
   border-radius:5px;
   cursor:pointer;
+  width:100%;
 }
 
 a.button {
   display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
+  margin-top:10px;
+  padding:10px 20px;
   background:#2a9d8f;
   color:white;
   text-decoration:none;
   border-radius:5px;
 }
 
-/* Courses Cards */
+/* Courses & Cards */
 .card {
   border:1px solid #ccc;
   padding:20px;
   border-radius:10px;
   width:200px;
   text-align:center;
+  margin-bottom:15px;
 }
 
-.card a {
-  background:#2a9d8f;
+/* Sections */
+section {
+  margin:40px 0;
+}
+
+/* Contact Form */
+form textarea {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  box-sizing:border-box;
+}
+
+/* Footer */
+.footer {
+  text-align:center;
+  background:#264653;
   color:white;
-  padding:8px 15px;
-  border-radius:5px;
-  text-decoration:none;
-  display:inline-block;
-  margin-top:10px;
+  padding:15px;
+  margin-top:40px;
 }
 </style>
 </head>
+
 <body>
 
 <!-- ================= Slider ================= -->
@@ -111,74 +119,129 @@ a.button {
   <img src="20260211_160932.jpg" class="slide">
 </div>
 
-<!-- ================= Success Box ================= -->
-<div class="box">
-  <h1 style="color:#2a9d8f;">Ruhan Education</h1>
-  <hr>
-  <h2 style="color:green;">✅ Registration Successful!</h2>
-  <p>ধন্যবাদ! আপনার ফর্ম জমা হয়েছে।</p>
-  <p style="color:#555;">আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে। আমাদের সাথে থাকুন এবং নতুন কোর্সগুলো দেখুন!</p>
-  <a href="index.html" class="button">⬅ Back to Home</a>
+<!-- ================= Logo ================= -->
+<div class="logo">
+  <img src="images.jpeg" alt="Ruhan Education Logo" width="200">
+</div>
+
+<!-- ================= Registration Form ================= -->
+<div class="form-box">
+  <h2>Student Registration</h2>
+
+  <form action="success.html" method="GET" onsubmit="return verifyOTP()">
+    <input type="text" placeholder="Student Name" required>
+    <input type="text" placeholder="Class" required>
+    <input type="tel" placeholder="Phone Number" required>
+
+    <input type="text" id="otp" placeholder="Enter OTP" required>
+
+    <button type="button" onclick="sendOTP()">Generate OTP</button>
+    <br><br>
+    <button type="submit">Submit</button>
+  </form>
 </div>
 
 <!-- ================= Courses Section ================= -->
 <section>
-<h2>Our Courses</h2>
-<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-  <div class="card">
-    <h3>Math Basics</h3>
-    <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
-    <a href="#" class="button">Enroll</a>
+  <h2>Our Courses</h2>
+  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+
+    <div class="card">
+      <h3>Math Basics</h3>
+      <p>শুরু থেকে advanced পর্যন্ত Math course।</p>
+      <a href="math.html" class="button">Enroll</a>
+    </div>
+
+    <div class="card">
+      <h3>English Grammar</h3>
+      <p>Grammar rules এবং exercises সহ।</p>
+      <a href="english.html" class="button">Enroll</a>
+    </div>
+
+    <div class="card">
+      <h3>Physics</h3>
+      <p>Basic থেকে Advanced Physics concepts।</p>
+      <a href="physics.html" class="button">Enroll</a>
+    </div>
+
+    <div class="card">
+      <h3>Chemistry</h3>
+      <p>Basic থেকে Advanced Chemistry concepts।</p>
+      <a href="chemistry.html" class="button">Enroll</a>
+    </div>
+
+    <div class="card">
+      <h3>Biology</h3>
+      <p>Plant, Animal, Human Biology সম্পূর্ণ guide।</p>
+      <a href="biology.html" class="button">Enroll</a>
+    </div>
+
   </div>
-  <div class="card">
-    <h3>English Grammar</h3>
-    <p>Grammar rules এবং exercises সহ।</p>
-    <a href="#" class="button">Enroll</a>
-  </div>
-</div>
 </section>
 
 <!-- ================= Downloadable Notes Section ================= -->
 <section>
-<h2>Download Notes</h2>
-<ul style="max-width:500px; margin:auto; text-align:left;">
-  <li><a href="notes/math.pdf" download>Math Notes</a></li>
-  <li><a href="notes/english.pdf" download>English Notes</a></li>
-  <li><a href="notes/science.pdf" download>Science Notes</a></li>
-</ul>
+  <h2>Download Notes</h2>
+  <ul style="max-width:500px; margin:auto; text-align:left;">
+    <li><a href="notes/math.pdf" download>Math Notes</a></li>
+    <li><a href="notes/english.pdf" download>English Notes</a></li>
+    <li><a href="notes/physics.pdf" download>Physics Notes</a></li>
+    <li><a href="notes/chemistry.pdf" download>Chemistry Notes</a></li>
+    <li><a href="notes/biology.pdf" download>Biology Notes</a></li>
+  </ul>
 </section>
 
 <!-- ================= Contact Section ================= -->
 <section>
-<h2>Contact Us</h2>
-<form action="#">
-  <label>Name:</label>
-  <input type="text" required>
-  
-  <label>Email:</label>
-  <input type="email" required>
-  
-  <label>Message:</label>
-  <textarea></textarea>
-  
-  <button type="submit">Send</button>
-</form>
+  <h2>Contact Us</h2>
+  <form action="#">
+    <label>Name:</label>
+    <input type="text" required>
+    
+    <label>Email:</label>
+    <input type="email" required>
+    
+    <label>Message:</label>
+    <textarea></textarea>
+    
+    <button type="submit">Send</button>
+  </form>
 </section>
 
-<!-- ================= Slider JS ================= -->
+<!-- ================= Footer ================= -->
+<div class="footer">
+  © 2026 Ruhan Education | All Rights Reserved
+</div>
+
+<!-- ================= JS ================= -->
 <script>
+/* Slider */
 let slides = document.querySelectorAll('.slide');
-let currentIndex = 0;
-
-function showSlide() {
-  slides.forEach(slide => slide.classList.remove('active'));
-  slides[currentIndex].classList.add('active');
-  currentIndex++;
-  if(currentIndex >= slides.length) currentIndex = 0;
+let index = 0;
+function showSlide(){
+  slides.forEach(s => s.classList.remove('active'));
+  slides[index].classList.add('active');
+  index++;
+  if(index >= slides.length) index = 0;
 }
+setInterval(showSlide,3000);
 
-setInterval(showSlide, 3000);
+/* OTP System */
+let generatedOTP = "";
+function sendOTP(){
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  alert("Your OTP is: " + generatedOTP);
+}
+function verifyOTP(){
+  let entered = document.getElementById("otp").value;
+  if(entered == generatedOTP){
+    return true;   // যাবে success.html এ
+  }else{
+    alert("❌ Wrong OTP");
+    return false;  // যাবে না
+  }
+}
 </script>
 
 </body>
-  </html>
+      </html>
